@@ -8,8 +8,8 @@ endif()
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO erincatto/Box2D
-    REF 374664b2a4ce2e7c24fbad6e1ed34bebcc9ab6bc
-    SHA512 39074bab01b36104aa685bfe39b40eb903d9dfb54cc3ba8098125db5291f55a8a9e578fc59563b2e8743abbbb26f419be7ae1524e235e7bd759257f99ff96bda
+    REF a174dbac1bc32e05e790cd867d9e30fb37681d47
+    SHA512 663b95ca173d343aafd71a53c0d502fa363bf8e7d5b2de9db99493830b3496325cdfcdb219f777d8e929cace1b88f61e5ca545b910bda5f7cab7011f2e65909b
     HEAD_REF master
 )
 
@@ -24,12 +24,12 @@ vcpkg_install_cmake()
 vcpkg_fixup_cmake_targets(CONFIG_PATH share/unofficial-box2d TARGET_PATH share/unofficial-box2d)
 
 file(
-    COPY ${SOURCE_PATH}/Box2D/Box2D
+    COPY ${SOURCE_PATH}/Box2D
     DESTINATION ${CURRENT_PACKAGES_DIR}/include
     FILES_MATCHING PATTERN "*.h"
 )
 
 vcpkg_copy_pdbs()
 
-file(COPY ${SOURCE_PATH}/Box2D/License.txt ${SOURCE_PATH}/README.md DESTINATION ${CURRENT_PACKAGES_DIR}/share/box2d)
-file(RENAME ${CURRENT_PACKAGES_DIR}/share/box2d/License.txt ${CURRENT_PACKAGES_DIR}/share/box2d/copyright)
+file(COPY ${SOURCE_PATH}/LICENSE ${SOURCE_PATH}/README.md DESTINATION ${CURRENT_PACKAGES_DIR}/share/box2d)
+file(RENAME ${CURRENT_PACKAGES_DIR}/share/box2d/LICENSE ${CURRENT_PACKAGES_DIR}/share/box2d/copyright)
