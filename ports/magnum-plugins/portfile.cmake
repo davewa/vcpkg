@@ -2,16 +2,17 @@ include(vcpkg_common_functions)
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO mosra/magnum-plugins
-    REF v2018.04
-    SHA512 0b8ae1488e210d111826532299d1e29c5eba32c75f7c210caff088a9a57459b6354474c7a53fccd0c78553d67d79bf041d471b5822c59cb2c9612126cf3e49ef
+    REF 863559d3b4ab16ed5d51c59ef746e2d7e4276b38
+    SHA512 cbd1c9955d1ba9e6daaacf07e894392b53e18840a539e974d8ba5432ff8cd28332a822a8a1bc8b697efd1f2664c5b81b294c86e76ad3ad54187b908631816075
     HEAD_REF master
 )
 
-vcpkg_apply_patches(
-    SOURCE_PATH ${SOURCE_PATH}
-    PATCHES
-        ${CMAKE_CURRENT_LIST_DIR}/001-tools-path.patch
-)
+# NOTE:davewa: Removed under the assumption that 2018.10-pre doesn't need them. This is not fully verified, although pickle builds and runs.
+# vcpkg_apply_patches(
+#     SOURCE_PATH ${SOURCE_PATH}
+#     PATCHES
+#         ${CMAKE_CURRENT_LIST_DIR}/001-tools-path.patch
+# )
 
 if(VCPKG_LIBRARY_LINKAGE STREQUAL static)
     set(BUILD_PLUGINS_STATIC 1)

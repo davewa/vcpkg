@@ -2,18 +2,19 @@ include(vcpkg_common_functions)
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO mosra/magnum
-    REF v2018.04
-    SHA512 6ad50e782c8cb10157cf969a571f8c0c0c91161de60ac25cf86eda09106f4de73168618a1a5fe0931c3fd293c718911e14d610bd4f86fe3e073620bd7619a9eb
+    REF 03ee1c6fe87166ed8be04f3f9467189d946fbe8e
+    SHA512 0c3b471d9ac66871f685f7b633c1c206970b294c039e6790dc0cf45108b1e6c8471908c90cde7ffbb76c2d59162fc646b6d757112a02654526f082919900d396
     HEAD_REF master
 )
 
-vcpkg_apply_patches(
-    SOURCE_PATH ${SOURCE_PATH}
-    PATCHES
-        ${CMAKE_CURRENT_LIST_DIR}/001-sdl-includes.patch
-        ${CMAKE_CURRENT_LIST_DIR}/002-tools-path.patch
-        ${CMAKE_CURRENT_LIST_DIR}/003-glfw-find-module.patch
-)
+# NOTE:davewa: Removed under the assumption that 2018.10-pre doesn't need them. This is not fully verified, although pickle builds and runs.
+# vcpkg_apply_patches(
+#     SOURCE_PATH ${SOURCE_PATH}
+#     PATCHES
+#         ${CMAKE_CURRENT_LIST_DIR}/001-sdl-includes.patch
+#         ${CMAKE_CURRENT_LIST_DIR}/002-tools-path.patch
+#         ${CMAKE_CURRENT_LIST_DIR}/003-glfw-find-module.patch
+# )
 
 if(VCPKG_LIBRARY_LINKAGE STREQUAL static)
     set(BUILD_STATIC 1)
