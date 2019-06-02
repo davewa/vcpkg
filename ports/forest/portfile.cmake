@@ -3,8 +3,8 @@ include(vcpkg_common_functions)
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO xorz57/forest
-    REF 9.0.5
-    SHA512 1dd3ae568ea2ce66cab285f392b167a08eef29387fffef3e9283c3ddaf1d461e5f6408cbce17bbaa928ba773a7890ec31f2612e5a2280cc4fe4a02824fbcd4a3
+    REF 11.0.1
+    SHA512 cb9245445c52c9e2e544c556cd87ecfd1e598bf0ed71a20368b32bd47b611f9696a8e50e06ecb98814af8e6e254bde9e7f98ca0d28c62f86ce9ff45805c2a1e5
     HEAD_REF master
 )
 

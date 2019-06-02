@@ -2,7 +2,6 @@
 #
 # NOTE: update the version string for new PDAL release
 set(PDAL_VERSION_STR "1.7.1")
-set(SOURCE_PATH ${CURRENT_BUILDTREES_DIR}/src/PDAL-${PDAL_VERSION_STR}-src)
 
 include(vcpkg_common_functions)
 
@@ -11,24 +10,21 @@ vcpkg_download_distfile(ARCHIVE
     FILENAME "PDAL-${PDAL_VERSION_STR}-src.tar.gz"
     SHA512 e3e63bb05930c1a28c4f46c7edfaa8e9ea20484f1888d845b660a29a76f1dd1daea3db30a98607be0c2eeb86930ec8bfd0965d5d7d84b07a4fe4cb4512da9b09
 )
-vcpkg_extract_source_archive(${ARCHIVE})
 
-vcpkg_apply_patches(
-    SOURCE_PATH ${SOURCE_PATH}
+vcpkg_extract_source_archive_ex(
+    ARCHIVE ${ARCHIVE}
+    OUT_SOURCE_PATH SOURCE_PATH
     PATCHES
-        ${CMAKE_CURRENT_LIST_DIR}/0001-win32_compiler_options.cmake.patch
-        ${CMAKE_CURRENT_LIST_DIR}/no-source-dir-writes.patch
+        0001-win32_compiler_options.cmake.patch
+        0002-no-source-dir-writes.patch
+        0003-fix-copy-vendor.patch
 )
 
 file(REMOVE "${SOURCE_PATH}/pdal/gitsha.cpp")
-
-# Deploy custom CMake modules to enforce expected dependencies look-up
-foreach(_module IN ITEMS FindGDAL FindGEOS FindGeoTIFF)
-    file(REMOVE "${SOURCE_PATH}/cmake/modules/${_module}.cmake")
-    file(COPY ${CMAKE_CURRENT_LIST_DIR}/${_module}.cmake
-        DESTINATION ${SOURCE_PATH}/cmake/modules/
-    )
-endforeach()
+file(REMOVE "${SOURCE_PATH}/cmake/modules/FindGDAL.cmake")
+file(REMOVE "${SOURCE_PATH}/cmake/modules/FindGEOS.cmake")
+file(COPY ${CMAKE_CURRENT_LIST_DIR}/FindGDAL.cmake DESTINATION ${SOURCE_PATH}/cmake/modules/)
+file(COPY ${CMAKE_CURRENT_LIST_DIR}/FindGEOS.cmake DESTINATION ${SOURCE_PATH}/cmake/modules/)
 
 # NOTE: CMake native BUILD_SHARED_LIBS option will be set by vcpkg_configure_cmake
 # TODO: Remove this as soon as PDAL switches to use BUILD_SHARED_LIBS

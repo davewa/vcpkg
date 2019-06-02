@@ -3,8 +3,8 @@ include(vcpkg_common_functions)
 vcpkg_from_bitbucket(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO sobjectizerteam/restinio-0.4
-    REF v.0.4.8
-    SHA512 da44a6df47f68294b1f26241d63ab282b16a8111580959ea5d69e18d9faca68fe9932451d07c4cd5732d5ac4e6fab6550842fd6bac6385a622fb618b4a916975
+    REF v.0.4.9.1
+    SHA512 e1bd27c08331b2994ce1be140502c9d7166cc997fd79f4380ea3400106f11a2cad25c72b9d0a0b2bf11c15ce9f895522e7aea41a5f2620e30752eded78869a62
 )
 
 vcpkg_configure_cmake(
